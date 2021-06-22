@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='clockify-api-client',
-    version='0.0.1',
+    version='0.0.2',
     author="Michael Bláha",
     author_email="michael.blaha@eluvia.com",
     description="Simple python API client for clockify. Inspired by https://pypi.org/project/clockify/ library.",
