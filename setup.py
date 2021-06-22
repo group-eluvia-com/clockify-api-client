@@ -16,7 +16,8 @@ setup(
     install_requires=['requests', 'factory_boy'],
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: MIT License",
+        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    extras_require={"dev": ["twine"]}
 )
