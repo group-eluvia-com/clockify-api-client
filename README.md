@@ -20,7 +20,7 @@ Simple Python API client for Clockify. [Clockify API reference](https://clockify
 Add package to your project:
 
 ```
-pipenv install -e ssh://git@gitlab.spkapps.eu/libraries/python/clockify-api-client.git@0.8.0#egg=clockify-api-client
+pipenv install clockify-api-client
 ```
 
 ## 2. Usage
