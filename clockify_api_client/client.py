@@ -1,10 +1,10 @@
-from clockify_api_client.factories.project_factory import ProjectFactory
-from clockify_api_client.factories.report_factory import ReportFactory
-from clockify_api_client.factories.task_factory import TaskFactory
-from clockify_api_client.factories.time_entry_factory import TimeEntryFactory
-from clockify_api_client.factories.user_factory import UserFactory
-from clockify_api_client.factories.workspace_factory import WorkspaceFactory
-from clockify_api_client.utils import Singleton
+from .factories.project_factory import ProjectFactory
+from .factories.report_factory import ReportFactory
+from .factories.task_factory import TaskFactory
+from .factories.time_entry_factory import TimeEntryFactory
+from .factories.user_factory import UserFactory
+from .factories.workspace_factory import WorkspaceFactory
+from .utils import Singleton
 
 
 class ClockifyAPIClient(metaclass=Singleton):
