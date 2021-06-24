@@ -10,7 +10,11 @@ class Project(AbstractClockify):
         super(Project, self).__init__(api_key=api_key, api_url=api_url)
 
     def get_projects(self, workspace_id, params=None):
-        """Returns projects from given workspace with applied params if provided"""
+        """Returns projects from given workspace with applied params if provided.
+        :param workspace_id Id of workspace.
+        :param params       Dictionary with request parameters.
+        :return             List of projects.
+        """
         try:
             if params:
                 url_params = urlencode(params, doseq=True)
@@ -22,7 +26,14 @@ class Project(AbstractClockify):
             logging.error("API error: {0}".format(e))
             raise e
 
-    def create_new_project(self, workspace_id, project_name, client_id, billable=False):
+    def add_project(self, workspace_id, project_name, client_id, billable=False):
+        """Add new project into workspace.
+        :param workspace_id Id of workspace.
+        :param project_name Name of new project.
+        :param client_id    Id of client.
+        :param billable     Bool flag.
+        :return             Dictionary representation of new project.
+        """
         try:
             url = self.base_url + '/workspaces/' + workspace_id + '/projects/'
             data = {

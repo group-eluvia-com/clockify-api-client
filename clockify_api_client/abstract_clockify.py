@@ -27,3 +27,9 @@ class AbstractClockify(ABC):
         if response.status_code in [200, 201, 202]:
             return response.json()
         raise Exception(response.json())
+
+    def delete(self, url):
+        response = requests.delete(url, headers=self.header)
+        if response.status_code in [200, 201, 202, 204]:
+            return response.json()
+        raise Exception(response.json())

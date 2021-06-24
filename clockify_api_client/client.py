@@ -17,7 +17,10 @@ class ClockifyAPIClient(metaclass=Singleton):
         self.reports = None
 
     def build(self, api_key, api_url):
-        """Builds services from available factories."""
+        """Builds services from available factories.
+        :param api_key Clockify API key.
+        :param api_url Clockify API url.
+        """
 
         self.workspaces = WorkspaceFactory(api_key=api_key, api_url=api_url)
         self.projects = ProjectFactory(api_key=api_key, api_url=api_url)

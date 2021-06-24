@@ -15,9 +15,8 @@ class Report(AbstractClockify):
         :return             Dictionary with summary report.
         """
         try:
-            url = self.base_url + '/workspaces/' + workspace_id + '/reports/summary'
+            url = self.base_url + '/workspaces/' + workspace_id + '/reports/summary/'
             return self.post(url, payload)
-
         except Exception as e:
             logging.error("API error: {0}".format(e))
             raise e
@@ -29,9 +28,8 @@ class Report(AbstractClockify):
         :return             Dictionary with detailed report.
         """
         try:
-            url = self.base_url + '/workspaces/' + workspace_id + '/reports/detailed'
+            url = self.base_url + '/workspaces/' + workspace_id + '/reports/detailed/'
             return self.post(url, payload)
-
         except Exception as e:
             logging.error("API error: {0}".format(e))
             raise e
@@ -43,9 +41,8 @@ class Report(AbstractClockify):
         :return             Dictionary with weekly report.
         """
         try:
-            url = self.base_url + '/workspaces/' + workspace_id + '/reports/weekly'
+            url = self.base_url + '/workspaces/' + workspace_id + '/reports/weekly/'
             return self.post(url, payload)
-
         except Exception as e:
             logging.error("API error: {0}".format(e))
             raise e

@@ -10,23 +10,11 @@ class Workspace(AbstractClockify):
 
     def get_workspaces(self):
         """Returns all workspaces.
-        :return List of Workspaces in dictionary representation."""
+        :return List of Workspaces in dictionary representation.
+        """
         try:
             url = self.base_url + '/workspaces/'
             return self.get(url)
-
-        except Exception as e:
-            logging.error("API error: {0}".format(e))
-            raise e
-
-    def create_new_workspace(self, name):
-        """Creates new workspace with given name.
-        :return Workspace dictionary representation."""
-        try:
-            url = self.base_url + '/workspaces/'
-            data = {'name': name}
-            return self.post(url, data)
-
         except Exception as e:
             logging.error("API error: {0}".format(e))
             raise e
