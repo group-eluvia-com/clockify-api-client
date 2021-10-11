@@ -40,7 +40,6 @@ class Project(AbstractClockify):
                 'name': project_name,
                 "clientId": client_id,
                 "isPublic": "true" if public else "false",
-                "color": color,
                 "billable": billable
             }
             return self.post(url, data)
