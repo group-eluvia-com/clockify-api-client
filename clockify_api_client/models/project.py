@@ -40,7 +40,6 @@ class Project(AbstractClockify):
                 'name': project_name,
                 "clientId": client_id,
                 "isPublic": "false",
-                "estimate": {"estimate": "3600", "type": "AUTO"},
                 "color": "#16407Bee",
                 "billable": billable
             }
