@@ -26,7 +26,7 @@ class Project(AbstractClockify):
             logging.error("API error: {0}".format(e))
             raise e
 
-    def add_project(self, workspace_id, project_name, client_id, billable=False):
+    def add_project(self, workspace_id, project_name, client_id, billable=False, public=False, color="#16407B"):
         """Add new project into workspace.
         :param workspace_id Id of workspace.
         :param project_name Name of new project.
@@ -39,9 +39,7 @@ class Project(AbstractClockify):
             data = {
                 'name': project_name,
                 "clientId": client_id,
-                "isPublic": "false",
-                "estimate": {"estimate": "3600", "type": "AUTO"},
-                "color": "#16407Bee",
+                "isPublic": "true" if public else "false",
                 "billable": billable
             }
             return self.post(url, data)
