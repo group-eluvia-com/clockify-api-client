@@ -38,7 +38,7 @@ class Client(AbstractClockify):
         try:
             if params:
                 url_params = urlencode(params, doseq=True)
-                url = self.base_url + '/workspaces/' + workspace_id + '/clients&' + url_params
+                url = self.base_url + '/workspaces/' + workspace_id + '/clients?' + url_params
             else:
                 url = self.base_url + '/workspaces/' + workspace_id + '/clients/'
             return self.get(url)
