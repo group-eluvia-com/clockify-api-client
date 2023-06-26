@@ -46,3 +46,18 @@ class Project(AbstractClockify):
         except Exception as e:
             logging.error("API error: {0}".format(e))
             raise e
+
+    def add_project_from_dict(self, workspace_id, project_dict):
+        """Add new project into workspace, built from a dictionary.
+        :param workspace_id ID of workspace.
+        :param project_dict Dictionary containing all the project details.
+        :return             Dictionary representation of new project.
+        """
+        
+        try:
+            url = self.base_url + '/workspaces/' + workspace_id + '/projects/'
+            return self.post(url, project_dict)
+        except Exception as e:
+            logging.error('API error:{0}'.format(e))
+            raise e
+

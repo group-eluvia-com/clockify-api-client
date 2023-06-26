@@ -6,7 +6,10 @@ import requests
 class AbstractClockify(ABC):
     def __init__(self, api_key, api_url):
 
-        self.base_url = f'https://global.{api_url}'.strip('/')
+        # Current API docs don't contain the "global" and the response time
+        # seems faster without it (although it works fine)
+        # self.base_url = f'https://global.{api_url}'.strip('/')
+        self.base_url = f'https://{api_url}'.strip('/')
         self.api_key = api_key
         self.header = {'X-Api-Key': self.api_key}
 
@@ -33,3 +36,10 @@ class AbstractClockify(ABC):
         if response.status_code in [200, 201, 202, 204]:
             return response.json()
         raise Exception(response.json())
+
+    def patch(self, url, payload):
+        response = requests.patch(url, headers=self.header, json=payload)
+        if response.status_code in [200, 201, 202, 204]:
+            return response.json()
+        raise Exception(response.json())
+
