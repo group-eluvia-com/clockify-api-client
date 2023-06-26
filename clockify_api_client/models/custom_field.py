@@ -9,48 +9,11 @@ class CustomField(AbstractClockify):
     def __init__(self, api_key, api_url):
         super(CustomField, self).__init__(api_key=api_key, api_url=api_url)
 
-
-    #def add_client(self, workspace_id, name=None, note=None):
-        #"""Adds new client.
-        #:param workspace_id Id of workspace to look for clients.
-        #:param name         Name of the new client.
-        #:param note         Description of client
-        #:return             Dictionary representation of new client.
-        #"""
-        #try:
-            #assert name
-            #data = {
-                #'name': name,
-                #'note' : note
-            #}
-            #url = self.base_url + '/workspaces/' + workspace_id + '/clients/'
-            #return self.post(url, payload=data)
-        #except Exception as e:
-            #logging.error("API error: {0}".format(e))
-            #raise e
-
-    #def get_clients(self, workspace_id, params=None):
-        #"""Returns all clients.
-        #:param workspace_id Id of workspace to look for clients.
-        #:param params       URL params of request.
-        #:return             List of clients(dict objects).
-        #"""
-        #try:
-            #if params:
-                #url_params = urlencode(params, doseq=True)
-                #url = self.base_url + '/workspaces/' + workspace_id + '/clients?' + url_params
-            #else:
-                #url = self.base_url + '/workspaces/' + workspace_id + '/clients/'
-            #return self.get(url)
-        #except Exception as e:
-            #logging.error("API error: {0}".format(e))
-            #raise e
-
     def get_custom_fields(self, workspace_id, params=None):
         """Returns all custom fields in the workspace.
         :param workspace_id Id of workspace to look for custom fields.
         :param params       URL params of request.
-        :return             List of custom fields(dict objects).
+        :return             List of custom fields (dict objects).
         """
         try:
             if params:
@@ -64,23 +27,28 @@ class CustomField(AbstractClockify):
             raise e
 
     def get_project_custom_fields(self, workspace_id, project_id, params={'status': 'VISIBLE',}):
-        url_params = urlencode(params, doseq=True)
-        url = self.base_url + '/workspaces/' + workspace_id + '/projects/' + project_id + '/custom-fields?' + url_params
-
-        print(url)
-
+        """Return the custom fields for a specific project.
+        :param workspace_id Id of workspace containing the project.
+        :param project_id   Id of project to look for custom fields.
+        :param params       URL params of request.
+        :return             List of custom fields (dict objects).
+        """
         try:
+            url_params = urlencode(params, doseq=True)
+            url = self.base_url + '/workspaces/' + workspace_id + '/projects/' + project_id + '/custom-fields?' + url_params
             return self.get(url)
         except Exception as e:
             logging.error('API error: {0}'.format(e))
             raise e
 
     def update_project_custom_field(self, workspace_id, project_id, custom_field_id, value, isVisible=True):
-        """Returns all custom fields in the workspace.
-        :param workspace_id Id of workspace.
-        :param project_id Id of project.
-        :param value Value to set
-        :param isVisible Boolean to set visiblity
+        """Update specified custom field in the project.
+        :param workspace_id    Id of workspace.
+        :param project_id      Id of project.
+        :param custom_field_id Id of custom field.
+        :param value           Value to set the custom field to.
+        :param isVisible       Boolean to set visibilty of the custom field.
+        :return                Dictionary of updated custom field.
         """
         try:
             if isVisible:
