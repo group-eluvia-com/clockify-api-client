@@ -16,15 +16,23 @@ class Project(AbstractClockify):
         :return             List of projects.
         """
         try:
-            if params:
+            page = 1
+            all_projects = []
+            while True:
+                params = params or {}
+                params.update({"page": page, "page-size": 50})
                 url_params = urlencode(params, doseq=True)
                 url = self.base_url + '/workspaces/' + workspace_id + '/projects?' + url_params
-            else:
-                url = self.base_url + '/workspaces/' + workspace_id + '/projects/'
-            return self.get(url)
+                response = self.get(url)
+                if not response:  # No more projects
+                    break
+                all_projects.extend(response)
+                page += 1
+            return all_projects
         except Exception as e:
             logging.error("API error: {0}".format(e))
             raise e
+
 
     def add_project(self, workspace_id, project_name, client_id, billable=False, public=False, color="#16407B"):
         """Add new project into workspace.
