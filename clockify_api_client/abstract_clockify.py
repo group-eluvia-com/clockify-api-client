@@ -1,6 +1,6 @@
 from abc import ABC
 
-import requests
+import httpx
 
 
 class AbstractClockify(ABC):
@@ -13,33 +13,37 @@ class AbstractClockify(ABC):
         self.api_key = api_key
         self.header = {'X-Api-Key': self.api_key}
 
-    def get(self, url):
-        response = requests.get(url, headers=self.header)
+    async def get(self, url):
+        async with httpx.AsyncClient() as client:
+            response = await client.get(url, headers=self.header)
         if response.status_code in [200, 201, 202]:
             return response.json()
         raise Exception(response.json())
 
-    def post(self, url, payload):
-        response = requests.post(url, headers=self.header, json=payload)
+    async def post(self, url, payload):
+        async with httpx.AsyncClient() as client:
+            response = await client.post(url, headers=self.header, json=payload)
         if response.status_code in [200, 201, 202]:
             return response.json()
         raise Exception(response.json())
 
-    def put(self, url, payload):
-        response = requests.put(url, headers=self.header, json=payload)
+    async def put(self, url, payload):
+        async with httpx.AsyncClient() as client:
+            response = await client.put(url, headers=self.header, json=payload)
         if response.status_code in [200, 201, 202]:
             return response.json()
         raise Exception(response.json())
 
-    def delete(self, url):
-        response = requests.delete(url, headers=self.header)
+    async def delete(self, url):
+        async with httpx.AsyncClient() as client:
+            response = await client.delete(url, headers=self.header)
         if response.status_code in [200, 201, 202, 204]:
             return response.json()
         raise Exception(response.json())
 
-    def patch(self, url, payload):
-        response = requests.patch(url, headers=self.header, json=payload)
+    async def patch(self, url, payload):
+        async with httpx.AsyncClient() as client:
+            response = await client.patch(url, headers=self.header, json=payload)
         if response.status_code in [200, 201, 202, 204]:
             return response.json()
         raise Exception(response.json())
-

@@ -9,7 +9,7 @@ class Tag(AbstractClockify):
     def __init__(self, api_key, api_url):
         super(Tag, self).__init__(api_key=api_key, api_url=api_url)
 
-    def get_tags(self, workspace_id, params=None):
+    async def get_tags(self, workspace_id, params=None):
         """Gets list of tags from Clockify.
         :param workspace_id  Id of workspace.
         :param params        Request URL query parameters.
@@ -21,7 +21,7 @@ class Tag(AbstractClockify):
                 url = self.base_url + '/workspaces/' + workspace_id + '/tags?' + url_params
             else:
                 url = self.base_url + '/workspaces/' + workspace_id + '/tags/'
-            return self.get(url)
+            return await self.get(url)
 
         except Exception as e:
             logging.error("API error: {0}".format(e))

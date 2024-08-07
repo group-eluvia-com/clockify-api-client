@@ -1,0 +1,14 @@
+# ion8 internal changelog
+
+## 0.2.0
+
+Made library async, switched from requests to httpx - jeff@ion8.net
+
+## 0.1.1
+
+Added custom fields patch from Anthony Floyd's fork.
+Added get_projects pagination patch from Eduard Germis' fork.
+
+## 0.1.0
+
+Initial fork from https://github.com/group-eluvia-com/clockify-api-client.
